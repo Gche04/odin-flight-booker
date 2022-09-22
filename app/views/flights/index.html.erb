@@ -13,7 +13,7 @@
     <%= form.select('time', @date) %>
 
     <%= form.submit %>
-<% end %>
+<% end %><br><br>
 
 <% if @available %>
     <%= form_with url: "/bookings/new", method: :get do |form| %>
@@ -31,4 +31,6 @@
 
         <%= form.submit %>
     <% end %>
+<% else %>
+    no available flight for your search
 <% end %>

@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root "flights#index"
-  resources :flights
-  resources :bookings
+  resources :flights, :only => [:index]
+  resources :bookings, :only => [:new, :show]
 end

@@ -18,11 +18,18 @@ class FlightsController < ApplicationController
         ] }
 
         
-        date = Date.parse(params[:time])
+        bdate = ""
+        edate = ""
+        date = params[:time]
+        if date
+            bdate = Date.parse(date).beginning_of_day
+            edate = Date.parse(date).end_of_day
+        end
+
         @flights = Flight.where(
             departure_airport_id:params[:departure_airport_id],
             arrival_airport_id:params[:arrival_airport_id],
-            flight_time:date.beginning_of_day..date.end_of_day
+            flight_time:bdate..edate
         )
 
         @passenger_num = params[:passenger]
