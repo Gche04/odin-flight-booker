@@ -1,0 +1,22 @@
+
+<%= form_with model: @booking do |form| %>
+    
+    <%= form.hidden_field :flight_id, value: @booking.flight.id %>
+
+    <% flash.each do |error, msg| %>
+        <div>
+            <%= msg %>
+        </div>
+    <% end %>
+
+    <h3> Passenger informations </h3>
+    <%= form.fields_for :passengers do |sub_form| %>
+
+        <%= sub_form.label :name, "passenger name" %>
+        <%= sub_form.text_field :name %><br>
+
+        <%= sub_form.label :email, "passenger email" %>
+        <%= sub_form.email_field :email %><br><br>
+    <% end %>
+    <%= form.submit %>
+<% end %>

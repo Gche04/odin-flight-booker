@@ -1,0 +1,19 @@
+
+<h1> Flight details </h1>
+<ul>
+    <li> Airline name: <%= @booking.flight.airline %> </li>
+    <li> Departure airport <%= @booking.flight.departure_airport.airport %> </li>
+    <li> Arrival airport <%= @booking.flight.arrival_airport.airport %> </li>
+    <li> Flight time <%= @booking.flight.flight_time %> </li>
+    <li> Flight duration <%= @booking.flight.flight_duration %> </li>
+</ul>
+
+<h2> Booking </h2>
+<ul>
+    <li> <%= @number %>  <%= @name %> </li>
+
+    <h3> <%= @name %> </h3>
+    <% @passengers.each do |passenger| %>
+        <li> <%= passenger.name %> </li>
+    <% end %>
+</ul>

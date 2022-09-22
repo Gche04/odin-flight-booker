@@ -1,0 +1,34 @@
+
+<%= form_with url: "/flights", method: :get do |form| %>
+    <%= form.label :departure_airport_id, "departure airport:" %>
+    <%= form.select(:departure_airport_id, @departure_airport) %>
+
+    <%= form.label :arrival_airport_id, "arrival airport:" %>
+    <%= form.select(:arrival_airport_id, @arrival_airport) %>
+
+    <%= form.label 'passenger', "passengers:" %>
+    <%= form.select('passenger', @passengers) %>
+
+    <%= form.label 'time', "time:" %>
+    <%= form.select('time', @date) %>
+
+    <%= form.submit %>
+<% end %>
+
+<% if @available %>
+    <%= form_with url: "/bookings/new", method: :get do |form| %>
+        <%= form.hidden_field :passenger_num, value: @passenger_num %>
+        <ul>
+            <% @flights.each do |flight| %>
+                <li> airline:- <%= flight.airline %></li>
+                <li> departure airport:- <%= flight.departure_airport.airport %></li>
+                <li> arrival airport:- <%= flight.arrival_airport.airport %></li>
+                <li> flight time:- <%= flight.flight_time %></li>
+                <li> flight duration:- <%= flight.flight_duration %></li>
+                <%= form.radio_button :flight, flight.id %><br><br>
+            <% end %>
+        </ul>
+
+        <%= form.submit %>
+    <% end %>
+<% end %>
