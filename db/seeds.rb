@@ -6,16 +6,16 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-#Airport.destroy_all
+Airport.destroy_all
 Flight.destroy_all
 
-#airports = Airport.create!([
-#    { airport: "LAG" },
-#    { airport: "OGN" }, 
-#    { airport: "IMO" }, 
-#    { airport: "ABJ" }, 
-#    { airport: "ABA" }
-#])
+airports = Airport.create!([
+    { airport: "LAG" },
+    { airport: "OGN" }, 
+    { airport: "IMO" }, 
+    { airport: "ABJ" }, 
+    { airport: "ABA" }
+])
 
 flights = Flight.create!([
     {
