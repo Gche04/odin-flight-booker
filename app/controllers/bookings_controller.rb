@@ -11,11 +11,27 @@ class BookingsController < ApplicationController
         @booking = Booking.create(booking_params)
         flash[:error] = @booking.errors.full_messages.to_sentence
 
-        if @booking.save
-            redirect_to @booking
-        else
-            render :new, status: :unprocessable_entity
-        end
+        #if @booking.save
+            #redirect_to @booking
+            
+                respond_to do |format|
+                  if @booking.save
+                    # Tell the UserMailer to send a welcome email after save
+                    passengers = @booking.passengers
+                    passengers.each do |passenger|
+                        PassengerMailer.with(passenger: passenger).passenger_mailer.deliver_now
+                    end
+                    
+                    format.html { redirect_to(@booking) }
+                    format.json { render json: @booking, status: :created, location: @booking }
+                  else
+                    format.html { render action: 'new' }
+                    format.json { render json: @booking.errors, status: :unprocessable_entity }
+                  end
+                end
+        #else
+            #render :new, status: :unprocessable_entity
+        #end
     end
 
     def show
